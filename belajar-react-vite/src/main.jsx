@@ -6,6 +6,7 @@ import './index.css'
 import App from './App'
 import LoginPage from './pages/login'
 import RegisterPage from './pages/register'
+import ProductsPage from './pages/products'
 import ErrorPage from './pages/errorPage'
 
 // import dan setting react router
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/products",
+    element: <ProductsPage />,
   },
 ]);
 
