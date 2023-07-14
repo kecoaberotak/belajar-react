@@ -2,6 +2,8 @@ import { Fragment } from "react";
 import CardProduct from "../components/fragments/CardProduct";
 import Button from "../components/elements/button/Button";
 
+import Counter from "../components/fragments/Counter";
+
 const products = [
   {
     id: 1,
@@ -52,8 +54,11 @@ const ProductsPage = () => {
           </CardProduct>
         ))}
       </div>
+      <div className="flex w-100 justify-center">
+        <Counter></Counter>
+      </div>
     </Fragment>
-  )
-}
+  );
+};
 
 export default ProductsPage;
