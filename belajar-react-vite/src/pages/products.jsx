@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import CardProduct from "../components/fragments/CardProduct";
 import Button from "../components/elements/button/Button";
 // import Counter from "../components/fragments/Counter";
@@ -45,7 +45,7 @@ const ProductsPage = () => {
       }, 0);
   
       setTotalPrice(sum);
-      localStorage.setItem('cart', JSON.stringify(cart));      
+      localStorage.setItem('cart', JSON.stringify(cart));
     }
   }, [cart]);
 
@@ -62,6 +62,26 @@ const ProductsPage = () => {
       setCart([...cart, {id, qty: 1}]);
     }
   };
+
+  // useRef untuk referensi value
+  // const cartRef = useRef(JSON.parse(localStorage.getItem('cart')) || []);
+
+  // const handleAddCartRef = (id) => {
+  //   console.log(cartRef.current)
+  //   cartRef.current = [...cartRef.current, {id, qty: 1}]
+  //   localStorage.setItem('cart', JSON.stringify(cartRef.current));
+  // }
+
+  // useRef untuk manipulasi dom
+  const totalPriceRef = useRef(null);
+  console.log(totalPriceRef)
+
+  useEffect(() => {
+    if(cart.length > 0){
+      totalPriceRef.current.style.display = 'table-row';
+    }else totalPriceRef.current.style.display = 'none';
+  }, [cart]);
+
 
   return(
     <Fragment>
@@ -104,7 +124,7 @@ const ProductsPage = () => {
                   </tr>
                 )
               })}
-              <tr>
+              <tr ref={totalPriceRef}>
                 <td colSpan={3}><b>Total Price</b></td>
                 <td><b>Rp {totalPrice.toLocaleString('id-ID', {styles: 'currency', currency: 'IDR'})}</b></td>
               </tr>
