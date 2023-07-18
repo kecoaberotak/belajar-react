@@ -8,6 +8,7 @@ import LoginPage from './pages/login'
 import RegisterPage from './pages/register'
 import ProductsPage from './pages/products'
 import ErrorPage from './pages/errorPage'
+import ProfilePage from './pages/profile'
 
 // import dan setting react router
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/products",
     element: <ProductsPage />,
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
   },
 ]);
 
