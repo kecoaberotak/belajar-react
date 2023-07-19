@@ -1,13 +1,16 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useContext } from "react";
 import CardProduct from "../components/fragments/CardProduct";
 import { getProducts } from "../services/product-service";
 import TableCart from "../components/fragments/tableCart";
 import Navbar from "../components/layouts/Navbar";
 import { useLogin } from "../hooks/useLogin";
+import { DarkMode } from "../context/DarkMode";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([])
   useLogin();
+
+  const {isDarkMode} = useContext(DarkMode);
 
   // tampilin data cart ke local storage
   // useEffect(() => {
@@ -40,8 +43,8 @@ const ProductsPage = () => {
 
   return(
     <Fragment>
-      <Navbar></Navbar>
-      <div className="flex justify-center py-5">
+      <Navbar/>
+      <div className={`flex justify-center py-5 ${isDarkMode && "bg-slate-900"}`}>
         <div className="w-4/6 flex flex-wrap">
           {products.length > 0 && products.map(product => (
             <CardProduct key={product.id}>

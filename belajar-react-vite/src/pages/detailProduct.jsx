@@ -1,10 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDetailProduct } from "../services/product-service";
 import { useLogin } from "../hooks/useLogin";
 import Navbar from "../components/layouts/Navbar";
+import { DarkMode } from "../context/DarkMode";
 
 const DetailProductPage = () => {
+  const {isDarkMode} = useContext(DarkMode);
+
   const {id} = useParams();
   const [product, setProduct] = useState({});
   const username = useLogin();
@@ -21,7 +24,7 @@ const DetailProductPage = () => {
   return (
     <Fragment>
       <Navbar></Navbar>
-      <div className="min-h-screen w-100 flex justify-center items-center">
+      <div className={`min-h-screen w-100 flex justify-center items-center ${isDarkMode && "bg-slate-900"}`}>
         {Object.keys(product).length > 0 && (
           <div className="flex font-sans max-w-xl">
             <div className="flex-none w-48 relative">
